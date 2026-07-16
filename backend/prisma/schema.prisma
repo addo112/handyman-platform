@@ -1,0 +1,118 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  HOMEOWNER
+  PROFESSIONAL
+  ADMIN
+}
+
+enum JobStatus {
+  PENDING
+  ACCEPTED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  firstName String
+  lastName  String
+  role      Role     @default(HOMEOWNER)
+  phone     String?
+  avatarUrl String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  professionalProfile ProfessionalProfile?
+  jobsAsHomeowner     Job[] @relation("HomeownerJobs")
+  jobsAsProfessional  Job[] @relation("ProfessionalJobs")
+  reviewsGiven        Review[] @relation("ReviewsGiven")
+  reviewsReceived     Review[] @relation("ReviewsReceived")
+}
+
+model ProfessionalProfile {
+  id          String   @id @default(uuid())
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id])
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
+  bio         String?
+  hourlyRate  Float
+  isVerified  Boolean  @default(false)
+  locationLat Float?
+  locationLng Float?
+  locationText String?
+  skills      String[]
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Category {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  icon        String?
+  description String?
+  
+  professionals ProfessionalProfile[]
+  jobs          Job[]
+}
+
+model Job {
+  id             String   @id @default(uuid())
+  title          String
+  description    String
+  status         JobStatus @default(PENDING)
+  
+  // Pricing & Bidding
+  estimatedPrice Float?
+  finalPrice     Float?
+  
+  // Location
+  locationLat    Float?
+  locationLng    Float?
+  locationText   String?
+  
+  // Relations
+  categoryId     String
+  category       Category @relation(fields: [categoryId], references: [id])
+  
+  homeownerId    String
+  homeowner      User     @relation("HomeownerJobs", fields: [homeownerId], references: [id])
+  
+  professionalId String?
+  professional   User?    @relation("ProfessionalJobs", fields: [professionalId], references: [id])
+  
+  scheduledFor   DateTime?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  
+  reviews        Review[]
+}
+
+model Review {
+  id             String   @id @default(uuid())
+  rating         Int      // 1 to 5
+  comment        String?
+  
+  jobId          String
+  job            Job      @relation(fields: [jobId], references: [id])
+  
+  authorId       String
+  author         User     @relation("ReviewsGiven", fields: [authorId], references: [id])
+  
+  targetId       String
+  target         User     @relation("ReviewsReceived", fields: [targetId], references: [id])
+  
+  createdAt      DateTime @default(now())
+}
