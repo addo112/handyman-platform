@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Calendar, MapPin, Clock, CreditCard, ShieldCheck, ChevronRight, CheckCircle, Info } from "lucide-react";
+import { Calendar, MapPin, Clock, CreditCard, ShieldCheck, ChevronRight, CheckCircle, Info, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { MOCK_PROFESSIONALS } from "@/lib/data/mock";
 import { useParams, useRouter } from "next/navigation";
