@@ -26,7 +26,7 @@ export default function DashboardLayout({
           <Link href="/ai-chat" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium transition-colors">
             <Search className="w-5 h-5" /> Find Pros
           </Link>
-          <Link href="/dashboard/homeowner" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium transition-colors">
+          <Link href="/dashboard/bookings" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium transition-colors">
             <Calendar className="w-5 h-5" /> My Bookings
           </Link>
           <Link href="/dashboard/homeowner" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium transition-colors">
