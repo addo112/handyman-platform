@@ -16,8 +16,8 @@ export default function Home() {
               <span className="font-bold text-xl tracking-tight">Handyman <span className="premium-gradient-text">ProConnect</span></span>
             </div>
             <div className="hidden md:flex space-x-8">
-              <Link href="#" className="text-slate-600 hover:text-primary-600 dark:text-slate-300 dark:hover:text-primary-400 font-medium transition-colors">Services</Link>
-              <Link href="#" className="text-slate-600 hover:text-primary-600 dark:text-slate-300 dark:hover:text-primary-400 font-medium transition-colors">For Professionals</Link>
+              <Link href="/ai-chat" className="text-slate-600 hover:text-primary-600 dark:text-slate-300 dark:hover:text-primary-400 font-medium transition-colors">Services</Link>
+              <Link href="/register" className="text-slate-600 hover:text-primary-600 dark:text-slate-300 dark:hover:text-primary-400 font-medium transition-colors">For Professionals</Link>
               <Link href="#" className="text-slate-600 hover:text-primary-600 dark:text-slate-300 dark:hover:text-primary-400 font-medium transition-colors">About Us</Link>
             </div>
             <div className="flex items-center space-x-4">
@@ -54,9 +54,9 @@ export default function Home() {
               <MapPin className="w-5 h-5 text-slate-400" />
               <input type="text" placeholder="Accra, Ghana" className="w-full bg-transparent border-none outline-none px-3 py-2 text-slate-900 dark:text-white placeholder-slate-400" />
             </div>
-            <button className="premium-gradient px-8 py-3 rounded-xl font-medium shadow-md shadow-primary-500/20 hover:opacity-90 transition-all flex justify-center items-center gap-2">
+            <Link href="/ai-chat" className="premium-gradient px-8 py-3 rounded-xl font-medium shadow-md shadow-primary-500/20 hover:opacity-90 transition-all flex justify-center items-center gap-2 text-white">
               Search <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
 
           <div className="mt-12 flex items-center justify-center gap-8 text-sm font-medium text-slate-500 dark:text-slate-400">
@@ -130,9 +130,9 @@ export default function Home() {
                     <p className="text-xs text-slate-500">Starting from</p>
                     <p className="font-bold">${pro.hourlyRate}<span className="text-sm font-normal text-slate-500">/hr</span></p>
                   </div>
-                  <button className="px-4 py-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-medium rounded-lg hover:opacity-90 transition-opacity">
+                  <Link href={`/book/${pro.id}`} className="px-4 py-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-medium rounded-lg hover:opacity-90 transition-opacity">
                     Book Now
-                  </button>
+                  </Link>
                 </div>
               </div>
             ))}
@@ -149,9 +149,9 @@ export default function Home() {
           <p className="text-lg md:text-xl text-white/80 mb-10 text-balance">
             Join thousands of professionals earning more with Handyman ProConnect. Get matched with jobs, manage your schedule, and grow your business using AI.
           </p>
-          <button className="bg-white text-primary-900 px-8 py-4 rounded-xl font-bold text-lg shadow-xl shadow-black/10 hover:scale-105 transition-transform">
+          <Link href="/register" className="inline-block bg-white text-primary-900 px-8 py-4 rounded-xl font-bold text-lg shadow-xl shadow-black/10 hover:scale-105 transition-transform">
             Apply as a Professional
-          </button>
+          </Link>
         </div>
       </section>
       
