@@ -3,9 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, User, Briefcase, Zap } from "lucide-react";
+import { useCurrency } from "@/components/CurrencyProvider";
 
 export default function Register() {
   const [role, setRole] = useState<"homeowner" | "professional">("homeowner");
+  const { currency } = useCurrency();
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900 px-4 py-12 relative overflow-hidden">
@@ -108,11 +110,11 @@ export default function Register() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Hourly Rate (USD)</label>
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Hourly Rate ({currency})</label>
                   <input 
                     type="number" 
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
-                    placeholder="$50"
+                    placeholder={currency === "GHS" ? "e.g. 500" : "e.g. 50"}
                   />
                 </div>
               </div>
