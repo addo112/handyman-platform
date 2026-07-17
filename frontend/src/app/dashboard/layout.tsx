@@ -29,16 +29,16 @@ export default function DashboardLayout({
           <Link href="/dashboard/bookings" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium transition-colors">
             <Calendar className="w-5 h-5" /> My Bookings
           </Link>
-          <Link href="/dashboard/homeowner" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium transition-colors">
+          <Link href="/dashboard/messages" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium transition-colors">
             <MessageSquare className="w-5 h-5" /> Messages
           </Link>
-          <Link href="/dashboard/homeowner" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium transition-colors">
+          <Link href="/dashboard/profile" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium transition-colors">
             <User className="w-5 h-5" /> Profile
           </Link>
         </nav>
         
         <div className="p-4 border-t border-slate-200 dark:border-slate-700 space-y-1">
-          <Link href="/dashboard/homeowner" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium transition-colors">
+          <Link href="/dashboard/settings" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium transition-colors">
             <Settings className="w-5 h-5" /> Settings
           </Link>
           <Link href="/" className="flex items-center gap-3 px-4 py-3 rounded-xl text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 font-medium transition-colors">
