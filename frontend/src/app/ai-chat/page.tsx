@@ -26,6 +26,7 @@ export default function AIChatPage() {
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const cameraInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -53,6 +54,9 @@ export default function AIChatPage() {
     // Reset input
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
+    }
+    if (cameraInputRef.current) {
+      cameraInputRef.current.value = "";
     }
   };
 
@@ -221,12 +225,20 @@ export default function AIChatPage() {
               <input 
                 type="file" 
                 accept="image/*" 
+                capture="environment"
+                className="hidden" 
+                ref={cameraInputRef} 
+                onChange={handleFileUpload} 
+              />
+              <input 
+                type="file" 
+                accept="image/*" 
                 className="hidden" 
                 ref={fileInputRef} 
                 onChange={handleFileUpload} 
               />
               <button 
-                onClick={() => fileInputRef.current?.click()}
+                onClick={() => cameraInputRef.current?.click()}
                 className="p-2 text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-white dark:hover:bg-slate-800 rounded-xl transition-colors"
               >
                 <Camera className="w-5 h-5" />
