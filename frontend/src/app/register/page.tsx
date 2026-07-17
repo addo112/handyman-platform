@@ -1,7 +1,12 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, User, Briefcase, Zap } from "lucide-react";
 
 export default function Register() {
+  const [role, setRole] = useState<"homeowner" | "professional">("homeowner");
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900 px-4 py-12 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-primary-100 via-transparent to-transparent dark:from-primary-900/20 dark:via-transparent dark:to-transparent"></div>
@@ -17,16 +22,30 @@ export default function Register() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 mb-8">
-          <div className="relative rounded-2xl border-2 border-primary-500 bg-primary-50 dark:bg-primary-900/20 p-6 cursor-pointer hover:shadow-lg transition-all">
-            <div className="absolute top-4 right-4 w-4 h-4 rounded-full bg-primary-500 ring-4 ring-primary-100"></div>
-            <User className="w-8 h-8 text-primary-600 mb-4" />
+          <div 
+            onClick={() => setRole("homeowner")}
+            className={`relative rounded-2xl border-2 p-6 cursor-pointer hover:shadow-lg transition-all ${
+              role === "homeowner" 
+                ? "border-primary-500 bg-primary-50 dark:bg-primary-900/20" 
+                : "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-primary-300"
+            }`}
+          >
+            <div className={`absolute top-4 right-4 w-4 h-4 rounded-full ${role === "homeowner" ? "bg-primary-500 ring-4 ring-primary-100" : "border-2 border-slate-300"}`}></div>
+            <User className={`w-8 h-8 mb-4 ${role === "homeowner" ? "text-primary-600" : "text-slate-400 group-hover:text-primary-500 transition-colors"}`} />
             <h3 className="font-bold text-lg mb-1">Homeowner</h3>
             <p className="text-sm text-slate-600 dark:text-slate-400">I want to hire skilled professionals for my projects.</p>
           </div>
           
-          <div className="relative rounded-2xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-6 cursor-pointer hover:border-primary-300 hover:shadow-lg transition-all group">
-            <div className="absolute top-4 right-4 w-4 h-4 rounded-full border-2 border-slate-300"></div>
-            <Briefcase className="w-8 h-8 text-slate-400 group-hover:text-primary-500 transition-colors mb-4" />
+          <div 
+            onClick={() => setRole("professional")}
+            className={`relative rounded-2xl border-2 p-6 cursor-pointer hover:shadow-lg transition-all group ${
+              role === "professional" 
+                ? "border-primary-500 bg-primary-50 dark:bg-primary-900/20" 
+                : "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-primary-300"
+            }`}
+          >
+            <div className={`absolute top-4 right-4 w-4 h-4 rounded-full ${role === "professional" ? "bg-primary-500 ring-4 ring-primary-100" : "border-2 border-slate-300"}`}></div>
+            <Briefcase className={`w-8 h-8 mb-4 ${role === "professional" ? "text-primary-600" : "text-slate-400 group-hover:text-primary-500 transition-colors"}`} />
             <h3 className="font-bold text-lg mb-1">Professional</h3>
             <p className="text-sm text-slate-600 dark:text-slate-400">I want to find jobs, manage my schedule, and earn money.</p>
           </div>
