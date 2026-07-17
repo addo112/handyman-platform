@@ -41,7 +41,7 @@ export default function AboutPage() {
             Revolutionizing the way you find <span className="premium-gradient-text">Skilled Professionals</span>.
           </h1>
           <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 text-balance leading-relaxed">
-            Handyman ProConnect was built on a simple premise: finding reliable, vetted tradespeople shouldn't be a gamble. We combine cutting-edge AI with a rigorous verification process to connect homeowners with the very best local professionals.
+            Handyman ProConnect was built on a simple premise: finding reliable, vetted tradespeople shouldn't be a gamble. We combine the cutting-edge ProConnect Engine with a rigorous verification process to connect homeowners with the very best local professionals.
           </p>
         </div>
       </section>
@@ -66,8 +66,8 @@ export default function AboutPage() {
               <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-400 rounded-xl flex items-center justify-center mb-6">
                 <Zap className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-bold mb-3">AI-Powered Precision</h3>
-              <p className="text-slate-600 dark:text-slate-400">Our advanced AI Matchmaker doesn't just look at categories; it understands the nuance of your specific job to pair you with the exact right skills.</p>
+              <h3 className="text-xl font-bold mb-3">ProConnect Engine Precision</h3>
+              <p className="text-slate-600 dark:text-slate-400">Our advanced ProConnect Matchmaker doesn't just look at categories; it understands the nuance of your specific job to pair you with the exact right skills.</p>
             </div>
             <div className="glass-card p-8 rounded-2xl">
               <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-400 rounded-xl flex items-center justify-center mb-6">
@@ -105,13 +105,13 @@ export default function AboutPage() {
               <div className="w-6 h-6 rounded-md premium-gradient flex items-center justify-center text-white font-bold text-xs">HP</div>
               <span className="font-bold text-white">Handyman ProConnect</span>
             </div>
-            <p className="text-sm">The AI-powered super platform for skilled tradespeople and services.</p>
+            <p className="text-sm">The ProConnect-powered super platform for skilled tradespeople and services.</p>
           </div>
           <div>
             <h4 className="text-white font-semibold mb-4">Platform</h4>
             <ul className="space-y-2 text-sm">
               <li><Link href="/about" className="hover:text-white transition-colors">How it works</Link></li>
-              <li><Link href="/ai-chat" className="hover:text-white transition-colors">AI Job Matching</Link></li>
+              <li><Link href="/ai-chat" className="hover:text-white transition-colors">ProConnect Job Matching</Link></li>
               <li><Link href="/about" className="hover:text-white transition-colors">Pricing</Link></li>
             </ul>
           </div>

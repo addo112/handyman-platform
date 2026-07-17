@@ -72,9 +72,11 @@ export default function BookingPage() {
               <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                 <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Describe the Issue</h2>
                 
-                <div className="bg-blue-50 dark:bg-blue-900/20 text-blue-800 dark:text-blue-300 p-4 rounded-xl flex gap-3 mb-6">
-                  <Info className="w-5 h-5 shrink-0 mt-0.5" />
-                  <p className="text-sm">Our AI uses this description to estimate time and cost, and ensures the professional brings the right tools.</p>
+                <div className="bg-primary-50 dark:bg-primary-900/20 p-4 rounded-xl flex items-start gap-3 mt-4">
+                  <div className="w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900/40 flex items-center justify-center shrink-0">
+                    <Sparkles className="w-4 h-4 text-primary-600 dark:text-primary-400" />
+                  </div>
+                  <p className="text-sm">The ProConnect Engine uses this description to estimate time and cost, and ensures the professional brings the right tools.</p>
                 </div>
 
                 <div className="space-y-4">
@@ -284,9 +286,9 @@ export default function BookingPage() {
                 <span className="text-slate-500">Rate</span>
                 <span className="font-medium text-slate-900 dark:text-white">{formatPrice(professional.hourlyRate)}/hr</span>
               </div>
-              <div className="flex justify-between text-primary-600 dark:text-primary-400 font-medium bg-primary-50 dark:bg-primary-900/20 p-2 rounded-lg -mx-2">
-                <span className="flex items-center gap-1">✨ AI Est. Time</span>
-                <span>~2.5 hours</span>
+              <div className="flex justify-between items-center text-sm font-medium">
+                <span className="flex items-center gap-1">✨ ProConnect Est. Time</span>
+                <span className="text-primary-600 dark:text-primary-400">~2.5 hours</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-500">Estimated Subtotal</span>

@@ -10,17 +10,17 @@ export default function HomeownerDashboard() {
   return (
     <div className="max-w-6xl mx-auto space-y-8">
       
-      {/* AI Assistant Banner */}
+      {/* ProConnect Assistant Banner */}
       <div className="relative rounded-2xl premium-gradient p-6 sm:p-8 overflow-hidden shadow-lg shadow-primary-500/20">
         <div className="absolute top-0 right-0 p-8 opacity-20">
           <Search className="w-32 h-32" />
         </div>
         <div className="relative z-10 max-w-2xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white font-medium text-xs mb-4 backdrop-blur-sm border border-white/30">
-            ✨ AI Assistant Ready
+            ✨ ProConnect Assistant Ready
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">What do you need fixed today?</h2>
-          <p className="text-primary-100 mb-6">Describe your problem, upload a photo, or choose a category. Our AI will instantly match you with the perfect pro.</p>
+          <p className="text-primary-100 mb-6">Describe your problem, upload a photo, or choose a category. Our ProConnect Engine will instantly match you with the perfect pro.</p>
           
           <div className="bg-white rounded-xl p-2 flex items-center shadow-lg">
             <div className="px-4 text-slate-400">

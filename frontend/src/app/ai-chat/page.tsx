@@ -19,7 +19,7 @@ export default function AIChatPage() {
     {
       id: "1",
       role: "ai",
-      content: "Hi! I'm your Handyman AI Assistant. Describe the issue you're having, and I'll help diagnose the problem, estimate the cost, and find the perfect professional for you.",
+      content: "Hi! I'm your Handyman ProConnect Assistant. Describe the issue you're having, and I'll help diagnose the problem, estimate the cost, and find the perfect professional for you.",
     }
   ]);
   const [input, setInput] = useState("");
@@ -39,7 +39,7 @@ export default function AIChatPage() {
       {
         id: Date.now().toString(),
         role: "ai",
-        content: "Hi! I'm your Handyman AI Assistant. Describe the issue you're having, and I'll help diagnose the problem, estimate the cost, and find the perfect professional for you.",
+        content: "Hi! I'm your Handyman ProConnect Assistant. Describe the issue you're having, and I'll help diagnose the problem, estimate the cost, and find the perfect professional for you.",
       }
     ]);
   };
@@ -95,7 +95,7 @@ export default function AIChatPage() {
               </div>
             </div>
             <div>
-              <h1 className="font-bold text-slate-900 dark:text-white leading-tight">AI Diagnostic Assistant</h1>
+              <h1 className="font-bold text-slate-900 dark:text-white leading-tight">ProConnect Diagnostic Assistant</h1>
               <p className="text-xs text-green-600 font-medium flex items-center gap-1">
                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Online
               </p>

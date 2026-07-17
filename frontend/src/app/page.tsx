@@ -36,13 +36,13 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 font-medium text-sm mb-6 border border-primary-100 dark:border-primary-800">
             <Zap className="w-4 h-4" />
-            <span>AI-Powered Matching Engine</span>
+            <span>ProConnect Matching Engine</span>
           </div>
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 text-balance">
             Find the perfect <span className="premium-gradient-text">Professional</span><br/>for any job, instantly.
           </h1>
           <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto text-balance">
-            Connect with verified plumbers, electricians, carpenters, and more. Powered by AI to match you with the right skills at the right price.
+            Connect with verified plumbers, electricians, carpenters, and more. Powered by the ProConnect Engine to match you with the right skills at the right price.
           </p>
           
           <div className="max-w-3xl mx-auto bg-white dark:bg-slate-800 rounded-2xl p-2 shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row gap-2">
@@ -96,7 +96,7 @@ export default function Home() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold mb-2">Top Rated Professionals Near You</h2>
-          <p className="text-slate-600 dark:text-slate-400 mb-10">AI-matched recommendations based on your location.</p>
+          <p className="text-slate-600 dark:text-slate-400 mb-10">ProConnect-matched recommendations based on your location.</p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {MOCK_PROFESSIONALS.map((pro) => (
@@ -147,7 +147,7 @@ export default function Home() {
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Are you a skilled professional?</h2>
           <p className="text-lg md:text-xl text-white/80 mb-10 text-balance">
-            Join thousands of professionals earning more with Handyman ProConnect. Get matched with jobs, manage your schedule, and grow your business using AI.
+            Join thousands of professionals earning more with Handyman ProConnect. Get matched with jobs, manage your schedule, and grow your business using the ProConnect Engine.
           </p>
           <Link href="/register" className="inline-block bg-white text-primary-900 px-8 py-4 rounded-xl font-bold text-lg shadow-xl shadow-black/10 hover:scale-105 transition-transform">
             Apply as a Professional
@@ -163,13 +163,13 @@ export default function Home() {
               <div className="w-6 h-6 rounded-md premium-gradient flex items-center justify-center text-white font-bold text-xs">HP</div>
               <span className="font-bold text-white">Handyman ProConnect</span>
             </div>
-            <p className="text-sm">The AI-powered super platform for skilled tradespeople and services.</p>
+            <p className="text-sm">The ProConnect-powered super platform for skilled tradespeople and services.</p>
           </div>
           <div>
             <h4 className="text-white font-semibold mb-4">Platform</h4>
             <ul className="space-y-2 text-sm">
               <li><Link href="/about" className="hover:text-white transition-colors">How it works</Link></li>
-              <li><Link href="/ai-chat" className="hover:text-white transition-colors">AI Job Matching</Link></li>
+              <li><Link href="/ai-chat" className="hover:text-white transition-colors">ProConnect Job Matching</Link></li>
               <li><Link href="/about" className="hover:text-white transition-colors">Pricing</Link></li>
             </ul>
           </div>

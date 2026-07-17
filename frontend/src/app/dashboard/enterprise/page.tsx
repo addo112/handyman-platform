@@ -187,13 +187,13 @@ export default function EnterpriseDashboard() {
           </div>
         </div>
 
-        {/* AI Predictive Maintenance */}
+        {/* ProConnect Predictive Maintenance */}
         <div className="space-y-6">
           <div className="bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 rounded-2xl p-6 relative overflow-hidden">
             <div className="absolute -right-4 -top-4 w-24 h-24 bg-primary-200 dark:bg-primary-800 rounded-full blur-2xl opacity-50"></div>
             
             <h3 className="font-bold text-lg mb-6 flex items-center gap-2 text-primary-900 dark:text-primary-100 relative z-10">
-              ✨ AI Predictive Maintenance
+              ✨ ProConnect Predictive Maintenance
             </h3>
             
             <div className="space-y-5 relative z-10">
