@@ -18,7 +18,7 @@ export default function Home() {
             <div className="hidden md:flex space-x-8">
               <Link href="/ai-chat" className="text-slate-600 hover:text-primary-600 dark:text-slate-300 dark:hover:text-primary-400 font-medium transition-colors">Services</Link>
               <Link href="/register" className="text-slate-600 hover:text-primary-600 dark:text-slate-300 dark:hover:text-primary-400 font-medium transition-colors">For Professionals</Link>
-              <Link href="#" className="text-slate-600 hover:text-primary-600 dark:text-slate-300 dark:hover:text-primary-400 font-medium transition-colors">About Us</Link>
+              <Link href="/about" className="text-slate-600 hover:text-primary-600 dark:text-slate-300 dark:hover:text-primary-400 font-medium transition-colors">About Us</Link>
             </div>
             <div className="flex items-center space-x-4">
               <Link href="/login" className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white font-medium">Log in</Link>
@@ -75,14 +75,14 @@ export default function Home() {
               <h2 className="text-3xl font-bold mb-2">Popular Services</h2>
               <p className="text-slate-600 dark:text-slate-400">Discover top-rated services in your area.</p>
             </div>
-            <Link href="#" className="hidden sm:flex text-primary-600 dark:text-primary-400 font-medium items-center gap-1 hover:gap-2 transition-all">
+            <Link href="/ai-chat" className="hidden sm:flex text-primary-600 dark:text-primary-400 font-medium items-center gap-1 hover:gap-2 transition-all">
               View all services <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {MOCK_CATEGORIES.map((cat) => (
-              <Link href="#" key={cat.id} className="group glass-card p-6 flex flex-col items-center justify-center text-center hover:-translate-y-1 transition-all duration-300 hover:shadow-primary-500/10">
+              <Link href="/ai-chat" key={cat.id} className="group glass-card p-6 flex flex-col items-center justify-center text-center hover:-translate-y-1 transition-all duration-300 hover:shadow-primary-500/10">
                 <span className="text-4xl mb-3 group-hover:scale-110 transition-transform">{cat.icon}</span>
                 <h3 className="font-semibold text-slate-900 dark:text-white">{cat.name}</h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{cat.count}+ pros</p>
@@ -168,24 +168,24 @@ export default function Home() {
           <div>
             <h4 className="text-white font-semibold mb-4">Platform</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="#" className="hover:text-white transition-colors">How it works</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">AI Job Matching</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Pricing</Link></li>
+              <li><Link href="/about" className="hover:text-white transition-colors">How it works</Link></li>
+              <li><Link href="/ai-chat" className="hover:text-white transition-colors">AI Job Matching</Link></li>
+              <li><Link href="/about" className="hover:text-white transition-colors">Pricing</Link></li>
             </ul>
           </div>
           <div>
             <h4 className="text-white font-semibold mb-4">Support</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="#" className="hover:text-white transition-colors">Help Center</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Trust & Safety</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Contact Us</Link></li>
+              <li><Link href="/about" className="hover:text-white transition-colors">Help Center</Link></li>
+              <li><Link href="/about" className="hover:text-white transition-colors">Trust & Safety</Link></li>
+              <li><Link href="/about" className="hover:text-white transition-colors">Contact Us</Link></li>
             </ul>
           </div>
           <div>
             <h4 className="text-white font-semibold mb-4">Legal</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="#" className="hover:text-white transition-colors">Terms of Service</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+              <li><Link href="/about" className="hover:text-white transition-colors">Terms of Service</Link></li>
+              <li><Link href="/about" className="hover:text-white transition-colors">Privacy Policy</Link></li>
             </ul>
           </div>
         </div>
