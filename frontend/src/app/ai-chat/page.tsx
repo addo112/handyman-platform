@@ -25,6 +25,36 @@ export default function AIChatPage() {
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    
+    const userMessage: Message = { 
+      id: Date.now().toString(), 
+      role: "user", 
+      content: `[Uploaded photo: ${file.name}]` 
+    };
+    
+    setMessages(prev => [...prev, userMessage]);
+    setIsTyping(true);
+
+    setTimeout(() => {
+      setIsTyping(false);
+      setMessages(prev => [...prev, {
+        id: (Date.now() + 1).toString(),
+        role: "ai",
+        content: "Thanks for the photo! I can see the issue clearly now. It looks like you need a professional to handle this safely. I've found a great match for you nearby.",
+        isActionable: true
+      }]);
+    }, 2000);
+    
+    // Reset input
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -188,10 +218,23 @@ export default function AIChatPage() {
           
           <div className="flex-1 bg-slate-100 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 flex items-end overflow-hidden focus-within:ring-2 focus-within:ring-primary-500 focus-within:border-primary-500 transition-shadow p-1">
             <div className="flex flex-col gap-1 px-2 pb-1">
-              <button className="p-2 text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-white dark:hover:bg-slate-800 rounded-xl transition-colors">
+              <input 
+                type="file" 
+                accept="image/*" 
+                className="hidden" 
+                ref={fileInputRef} 
+                onChange={handleFileUpload} 
+              />
+              <button 
+                onClick={() => fileInputRef.current?.click()}
+                className="p-2 text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-white dark:hover:bg-slate-800 rounded-xl transition-colors"
+              >
                 <Camera className="w-5 h-5" />
               </button>
-              <button className="p-2 text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-white dark:hover:bg-slate-800 rounded-xl transition-colors">
+              <button 
+                onClick={() => fileInputRef.current?.click()}
+                className="p-2 text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-white dark:hover:bg-slate-800 rounded-xl transition-colors"
+              >
                 <ImageIcon className="w-5 h-5" />
               </button>
             </div>
