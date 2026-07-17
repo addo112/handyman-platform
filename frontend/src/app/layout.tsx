@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   description: "Enterprise-grade AI-powered multi-vendor marketplace for skilled tradespeople.",
 };
 
+import { CurrencyProvider } from "@/components/CurrencyProvider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -22,7 +24,11 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col font-sans">
+        <CurrencyProvider>
+          {children}
+        </CurrencyProvider>
+      </body>
     </html>
   );
 }

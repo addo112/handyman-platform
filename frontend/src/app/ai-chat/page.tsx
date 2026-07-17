@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { Send, Bot, User, Sparkles, Image as ImageIcon, Camera, ArrowLeft, Loader2, Wrench } from "lucide-react";
 import Link from "next/link";
 import { MOCK_PROFESSIONALS } from "@/lib/data/mock";
+import { useCurrency } from "@/components/CurrencyProvider";
 
 type Message = {
   id: string;
@@ -13,6 +14,7 @@ type Message = {
 };
 
 export default function AIChatPage() {
+  const { formatPrice } = useCurrency();
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
@@ -59,10 +61,10 @@ export default function AIChatPage() {
       let isActionable = false;
 
       if (lowerInput.includes("leak") || lowerInput.includes("water") || lowerInput.includes("sink")) {
-        aiResponse = "It sounds like you have a plumbing issue, likely a loose connection or a worn-out seal under the sink. This is an urgent issue that could cause water damage. I estimate it will take about 1-2 hours to fix, costing between $80 - $150. Would you like me to match you with a top-rated plumber nearby?";
+        aiResponse = `It sounds like you have a plumbing issue, likely a loose connection or a worn-out seal under the sink. This is an urgent issue that could cause water damage. I estimate it will take about 1-2 hours to fix, costing between ${formatPrice(80)} - ${formatPrice(150)}. Would you like me to match you with a top-rated plumber nearby?`;
         isActionable = true;
       } else if (lowerInput.includes("light") || lowerInput.includes("power") || lowerInput.includes("electrical")) {
-        aiResponse = "That sounds like an electrical fault. It could be a tripped breaker, a faulty switch, or damaged wiring. For safety, this requires a certified electrician. Estimated cost is around $120 - $250. Shall I find an electrician for you?";
+        aiResponse = `That sounds like an electrical fault. It could be a tripped breaker, a faulty switch, or damaged wiring. For safety, this requires a certified electrician. Estimated cost is around ${formatPrice(120)} - ${formatPrice(250)}. Shall I find an electrician for you?`;
         isActionable = true;
       } else {
         aiResponse = "I understand. Could you provide a bit more detail? For example, when did you first notice the issue, or is there any strange sound/smell? You can also upload a photo so I can analyze it visually!";

@@ -1,8 +1,12 @@
+"use client";
+
 import { Search, MapPin, Star, Clock, ShieldCheck, ChevronRight } from "lucide-react";
 import { MOCK_CATEGORIES, MOCK_PROFESSIONALS } from "@/lib/data/mock";
 import Link from "next/link";
+import { useCurrency } from "@/components/CurrencyProvider";
 
 export default function HomeownerDashboard() {
+  const { formatPrice } = useCurrency();
   return (
     <div className="max-w-6xl mx-auto space-y-8">
       
@@ -72,7 +76,7 @@ export default function HomeownerDashboard() {
               
               <div className="flex justify-between items-center pt-4 border-t border-slate-100 dark:border-slate-700">
                 <div>
-                  <p className="font-bold text-slate-900 dark:text-white">${pro.hourlyRate}<span className="text-xs font-normal text-slate-500">/hr</span></p>
+                  <p className="font-bold text-slate-900 dark:text-white">{formatPrice(pro.hourlyRate)}<span className="text-xs font-normal text-slate-500">/hr</span></p>
                 </div>
                 <Link href={`/book/${pro.id}`}>
                   <button className="bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white px-4 py-2 rounded-lg text-sm font-medium group-hover:bg-primary-600 group-hover:text-white transition-colors">

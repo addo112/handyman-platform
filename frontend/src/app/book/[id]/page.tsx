@@ -6,6 +6,7 @@ import Link from "next/link";
 import { MOCK_PROFESSIONALS } from "@/lib/data/mock";
 import { useParams, useRouter } from "next/navigation";
 import { PaystackButton } from "react-paystack";
+import { useCurrency, USD_TO_GHS_RATE } from "@/components/CurrencyProvider";
 
 export default function BookingPage() {
   const params = useParams();
@@ -13,6 +14,7 @@ export default function BookingPage() {
   
   // Find pro, or use the first one as fallback if invalid ID
   const professional = MOCK_PROFESSIONALS.find(p => p.id === id) || MOCK_PROFESSIONALS[0];
+  const { formatPrice, currency } = useCurrency();
   
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [date, setDate] = useState("");
@@ -31,7 +33,8 @@ export default function BookingPage() {
 
   const router = useRouter();
   const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_KEY || "pk_test_ca0502e444c035f7c90383cae859c5bfe76c59cc";
-  const amount = Math.round(total * 100); // Paystack expects lowest currency unit
+  const amountToCharge = currency === "GHS" ? total * USD_TO_GHS_RATE : total;
+  const amount = Math.round(amountToCharge * 100); // Paystack expects lowest currency unit
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 pt-24 pb-12">
@@ -243,9 +246,10 @@ export default function BookingPage() {
                   </button>
                   <PaystackButton
                     className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-xl font-bold transition-colors flex items-center gap-2 shadow-lg shadow-green-500/30"
-                    text={`Pay $${total.toFixed(2)} & Book`}
+                    text={`Pay ${formatPrice(total)} & Book`}
                     email="user@example.com"
                     amount={amount}
+                    currency={currency}
                     publicKey={publicKey}
                     onSuccess={() => {
                       alert("Payment successful! Job booked via Mobile Money/Card.");
@@ -278,7 +282,7 @@ export default function BookingPage() {
             <div className="space-y-3 text-sm mb-6 pb-6 border-b border-slate-200 dark:border-slate-700">
               <div className="flex justify-between">
                 <span className="text-slate-500">Rate</span>
-                <span className="font-medium text-slate-900 dark:text-white">${professional.hourlyRate}/hr</span>
+                <span className="font-medium text-slate-900 dark:text-white">{formatPrice(professional.hourlyRate)}/hr</span>
               </div>
               <div className="flex justify-between text-primary-600 dark:text-primary-400 font-medium bg-primary-50 dark:bg-primary-900/20 p-2 rounded-lg -mx-2">
                 <span className="flex items-center gap-1">✨ AI Est. Time</span>
@@ -286,17 +290,17 @@ export default function BookingPage() {
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-500">Estimated Subtotal</span>
-                <span className="font-medium text-slate-900 dark:text-white">${estimatedPrice.toFixed(2)}</span>
+                <span className="font-medium text-slate-900 dark:text-white">{formatPrice(estimatedPrice)}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-500">Platform & Service Fee</span>
-                <span className="font-medium text-slate-900 dark:text-white">${serviceFee.toFixed(2)}</span>
+                <span className="font-medium text-slate-900 dark:text-white">{formatPrice(serviceFee)}</span>
               </div>
             </div>
 
             <div className="flex justify-between items-center mb-6">
               <span className="font-bold text-slate-900 dark:text-white">Total</span>
-              <span className="text-2xl font-bold text-slate-900 dark:text-white">${total.toFixed(2)}</span>
+              <span className="text-2xl font-bold text-slate-900 dark:text-white">{formatPrice(total)}</span>
             </div>
 
             <p className="text-xs text-slate-500 text-center">

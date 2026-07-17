@@ -1,6 +1,11 @@
+"use client";
+
 import { Bell, Shield, CreditCard, Moon, Globe, HelpCircle } from "lucide-react";
+import { useCurrency } from "@/components/CurrencyProvider";
 
 export default function SettingsPage() {
+  const { currency, setCurrency } = useCurrency();
+
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-3xl">
       <div className="mb-8">
@@ -9,7 +14,39 @@ export default function SettingsPage() {
       </div>
 
       <div className="space-y-6">
-        
+        {/* Preferences Section */}
+        <div className="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 p-6 sm:p-8 shadow-sm">
+          <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100 dark:border-slate-700">
+            <div className="p-2 bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400 rounded-lg">
+              <Globe className="w-5 h-5" />
+            </div>
+            <h3 className="text-lg font-bold">Preferences</h3>
+          </div>
+          
+          <div className="space-y-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h4 className="font-medium text-slate-900 dark:text-white mb-1">Display Currency</h4>
+                <p className="text-sm text-slate-500">Choose between US Dollar (USD) and Ghana Cedis (GHS).</p>
+              </div>
+              <div className="flex bg-slate-100 dark:bg-slate-900 p-1 rounded-xl">
+                <button 
+                  onClick={() => setCurrency("USD")}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${currency === "USD" ? "bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm" : "text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"}`}
+                >
+                  USD ($)
+                </button>
+                <button 
+                  onClick={() => setCurrency("GHS")}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${currency === "GHS" ? "bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm" : "text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"}`}
+                >
+                  GHS (GH₵)
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Notifications Section */}
         <div className="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 p-6 sm:p-8 shadow-sm">
           <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100 dark:border-slate-700">

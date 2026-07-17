@@ -1,6 +1,10 @@
+"use client";
+
 import { DollarSign, Briefcase, Star, TrendingUp, Calendar, MapPin, MessageSquare, CheckCircle } from "lucide-react";
+import { useCurrency } from "@/components/CurrencyProvider";
 
 export default function ProfessionalDashboard() {
+  const { formatPrice } = useCurrency();
   return (
     <div className="max-w-7xl mx-auto space-y-8">
       
@@ -26,7 +30,7 @@ export default function ProfessionalDashboard() {
           <div className="flex justify-between items-start">
             <div>
               <p className="text-sm font-medium text-slate-500 mb-1">Total Earnings</p>
-              <h3 className="text-3xl font-bold text-slate-900 dark:text-white">$1,245<span className="text-sm font-normal text-slate-500">.00</span></h3>
+              <h3 className="text-3xl font-bold text-slate-900 dark:text-white">{formatPrice(1245)}</h3>
             </div>
             <div className="w-10 h-10 rounded-xl bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center">
               <DollarSign className="w-5 h-5 text-primary-600 dark:text-primary-400" />
@@ -117,7 +121,7 @@ export default function ProfessionalDashboard() {
               <div className="sm:w-48 flex flex-col justify-between border-t sm:border-t-0 sm:border-l border-slate-200 dark:border-slate-700 pt-4 sm:pt-0 sm:pl-5">
                 <div className="mb-4 sm:mb-0">
                   <p className="text-xs text-slate-500 mb-1">AI Estimated Price</p>
-                  <p className="font-bold text-xl text-primary-600 dark:text-primary-400">$120 - $150</p>
+                  <p className="font-bold text-xl text-primary-600 dark:text-primary-400">{formatPrice(120)} - {formatPrice(150)}</p>
                 </div>
                 <div className="space-y-2">
                   <button className="w-full bg-primary-600 hover:bg-primary-700 text-white text-sm font-medium py-2 rounded-lg transition-colors flex items-center justify-center gap-1">
@@ -151,7 +155,7 @@ export default function ProfessionalDashboard() {
               <div className="sm:w-48 flex flex-col justify-between border-t sm:border-t-0 sm:border-l border-slate-200 dark:border-slate-700 pt-4 sm:pt-0 sm:pl-5">
                 <div className="mb-4 sm:mb-0">
                   <p className="text-xs text-slate-500 mb-1">AI Estimated Price</p>
-                  <p className="font-bold text-xl text-primary-600 dark:text-primary-400">$300 - $450</p>
+                  <p className="font-bold text-xl text-primary-600 dark:text-primary-400">{formatPrice(300)} - {formatPrice(450)}</p>
                 </div>
                 <div className="space-y-2">
                   <button className="w-full bg-primary-600 hover:bg-primary-700 text-white text-sm font-medium py-2 rounded-lg transition-colors flex items-center justify-center gap-1">
