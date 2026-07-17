@@ -19,6 +19,7 @@ export default function BookingPage() {
   const [time, setTime] = useState("");
   const [issue, setIssue] = useState("");
   const [address, setAddress] = useState("");
+  const [files, setFiles] = useState<FileList | null>(null);
 
   const handleNext = () => setStep(prev => Math.min(prev + 1, 3) as 1 | 2 | 3);
   const handleBack = () => setStep(prev => Math.max(prev - 1, 1) as 1 | 2 | 3);
@@ -87,9 +88,27 @@ export default function BookingPage() {
                   
                   <div>
                     <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Upload Photos (Optional, but highly recommended)</label>
-                    <div className="border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-xl p-8 text-center hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer">
-                      <p className="text-sm text-slate-500">Click to upload or drag and drop images here</p>
-                    </div>
+                    <label className="block border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-xl p-8 text-center hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer relative overflow-hidden">
+                      <input 
+                        type="file" 
+                        multiple 
+                        accept="image/*" 
+                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" 
+                        onChange={(e) => setFiles(e.target.files)}
+                      />
+                      {files && files.length > 0 ? (
+                        <div className="flex flex-col items-center gap-2">
+                          <div className="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-400 flex items-center justify-center">
+                            <CheckCircle className="w-5 h-5" />
+                          </div>
+                          <p className="text-sm font-medium text-primary-600 dark:text-primary-400">
+                            {files.length} {files.length === 1 ? 'image' : 'images'} selected
+                          </p>
+                        </div>
+                      ) : (
+                        <p className="text-sm text-slate-500">Click to upload or drag and drop images here</p>
+                      )}
+                    </label>
                   </div>
                 </div>
 
