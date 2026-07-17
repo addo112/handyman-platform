@@ -32,6 +32,16 @@ export default function AIChatPage() {
     scrollToBottom();
   }, [messages, isTyping]);
 
+  const handleClearChat = () => {
+    setMessages([
+      {
+        id: Date.now().toString(),
+        role: "ai",
+        content: "Hi! I'm your Handyman AI Assistant. Describe the issue you're having, and I'll help diagnose the problem, estimate the cost, and find the perfect professional for you.",
+      }
+    ]);
+  };
+
   const handleSend = () => {
     if (!input.trim()) return;
 
@@ -90,7 +100,10 @@ export default function AIChatPage() {
             </div>
           </div>
         </div>
-        <button className="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors hidden sm:block">
+        <button 
+          onClick={handleClearChat}
+          className="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors hidden sm:block"
+        >
           Clear Chat
         </button>
       </header>
