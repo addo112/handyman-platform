@@ -1,6 +1,8 @@
 import Link from "next/link";
-import { Home, Search, Calendar, MessageSquare, User, Bell, Settings, LogOut } from "lucide-react";
+import { Home, Search, Calendar, MessageSquare, User, Settings, LogOut } from "lucide-react";
 import { CurrencyDropdown } from "@/components/CurrencyDropdown";
+import { NotificationDropdown } from "@/components/NotificationDropdown";
+import { ProfileDropdown } from "@/components/ProfileDropdown";
 
 export default function DashboardLayout({
   children,
@@ -60,13 +62,8 @@ export default function DashboardLayout({
           </div>
           <div className="flex items-center gap-4">
             <CurrencyDropdown />
-            <button className="relative p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
-              <Bell className="w-6 h-6" />
-              <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white dark:border-slate-800"></span>
-            </button>
-            <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 border-2 border-primary-500 overflow-hidden">
-              <img src="https://i.pravatar.cc/150?u=john" alt="Profile" className="w-full h-full object-cover" />
-            </div>
+            <NotificationDropdown />
+            <ProfileDropdown />
           </div>
         </header>
         
