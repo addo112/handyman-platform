@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { User, Settings, LogOut, LayoutDashboard } from "lucide-react";
+import { User, Settings, LogOut, LayoutDashboard, ShieldCheck } from "lucide-react";
 
 export function ProfileDropdown() {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,7 +59,14 @@ export function ProfileDropdown() {
             </Link>
           </div>
           
-          <div className="p-2 border-t border-slate-200 dark:border-slate-700">
+          <div className="p-2 border-t border-slate-200 dark:border-slate-700 space-y-1">
+            <Link 
+              href="/admin" 
+              onClick={() => setIsOpen(false)}
+              className="flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium text-slate-900 dark:text-white bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700 w-full"
+            >
+              <ShieldCheck className="w-4 h-4 text-primary-500" /> Admin Dashboard
+            </Link>
             <Link 
               href="/" 
               onClick={() => setIsOpen(false)}
