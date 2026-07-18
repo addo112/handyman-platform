@@ -1,14 +1,28 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { Home, Search, Calendar, MessageSquare, User, Settings, LogOut } from "lucide-react";
 import { CurrencyDropdown } from "@/components/CurrencyDropdown";
 import { NotificationDropdown } from "@/components/NotificationDropdown";
 import { ProfileDropdown } from "@/components/ProfileDropdown";
+import { createClient } from "@/lib/supabase/server";
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const supabase = await createClient();
+  const { data: { user }, error } = await supabase.auth.getUser();
+
+  if (error || !user) {
+    redirect("/login");
+  }
+
+  // Extract name (fallback to "User" if not set)
+  const fullName = user.user_metadata?.full_name || "User";
+  const firstName = fullName.split(" ")[0];
+  const role = user.user_metadata?.role || "homeowner";
+  const email = user.email || "";
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex">
       {/* Sidebar */}
@@ -23,7 +37,7 @@ export default function DashboardLayout({
         </div>
         
         <nav className="flex-1 p-4 space-y-1">
-          <Link href="/dashboard/homeowner" className="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 font-medium">
+          <Link href={`/dashboard/${role}`} className="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 font-medium">
             <Home className="w-5 h-5" /> Dashboard
           </Link>
           <Link href="/ai-chat" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 font-medium transition-colors">
@@ -58,12 +72,12 @@ export default function DashboardLayout({
             <div className="w-8 h-8 rounded-lg premium-gradient flex items-center justify-center text-white font-bold">HP</div>
           </div>
           <div className="hidden md:block">
-            <h1 className="text-xl font-bold">Welcome back, John!</h1>
+            <h1 className="text-xl font-bold">Welcome back, {firstName}!</h1>
           </div>
           <div className="flex items-center gap-4">
             <CurrencyDropdown />
             <NotificationDropdown />
-            <ProfileDropdown />
+            <ProfileDropdown user={{ fullName, email, role }} />
           </div>
         </header>
         
