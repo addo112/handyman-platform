@@ -2,12 +2,61 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, User, Briefcase, Zap } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ArrowLeft, User, Briefcase, Zap, Loader2 } from "lucide-react";
 import { useCurrency } from "@/components/CurrencyProvider";
+import { createClient } from "@/lib/supabase/client";
 
 export default function Register() {
+  const router = useRouter();
   const [role, setRole] = useState<"homeowner" | "professional">("homeowner");
   const { currency } = useCurrency();
+  
+  // Form State
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleRegister = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!firstName || !lastName || !email || !password) {
+      setError("Please fill in all fields.");
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+
+    const supabase = createClient();
+    
+    // We pass the full name and role into the user_metadata so our SQL trigger can pick it up
+    const { data, error: authError } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          full_name: `${firstName} ${lastName}`,
+          role: role,
+        }
+      }
+    });
+
+    if (authError) {
+      setError(authError.message);
+      setLoading(false);
+      return;
+    }
+
+    // Since we don't have email confirmation required right now, just redirect to dashboard
+    if (role === "homeowner") {
+      router.push("/dashboard/homeowner");
+    } else {
+      router.push("/dashboard/professional");
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900 px-4 py-12 relative overflow-hidden">
@@ -53,12 +102,19 @@ export default function Register() {
           </div>
         </div>
 
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleRegister}>
+          {error && (
+            <div className="p-3 rounded-lg bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-sm font-medium border border-red-200 dark:border-red-800">
+              {error}
+            </div>
+          )}
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">First Name</label>
               <input 
                 type="text" 
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
                 placeholder="John"
               />
@@ -67,6 +123,8 @@ export default function Register() {
               <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Last Name</label>
               <input 
                 type="text" 
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
                 placeholder="Doe"
               />
@@ -77,6 +135,8 @@ export default function Register() {
             <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Email Address</label>
             <input 
               type="email" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
               placeholder="you@example.com"
             />
@@ -86,6 +146,8 @@ export default function Register() {
             <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Password</label>
             <input 
               type="password" 
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
               placeholder="••••••••"
             />
@@ -140,8 +202,12 @@ export default function Register() {
             </div>
           )}
           
-          <button type="button" className="w-full premium-gradient text-white font-medium py-3 rounded-xl hover:opacity-90 shadow-md shadow-primary-500/20 transition-all flex justify-center items-center gap-2 mt-6">
-            Create Account <Zap className="w-4 h-4" />
+          <button 
+            type="submit" 
+            disabled={loading}
+            className="w-full premium-gradient text-white font-medium py-3 rounded-xl hover:opacity-90 shadow-md shadow-primary-500/20 transition-all flex justify-center items-center gap-2 mt-6 disabled:opacity-70 disabled:cursor-not-allowed"
+          >
+            {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <>Create Account <Zap className="w-4 h-4" /></>}
           </button>
         </form>
         
